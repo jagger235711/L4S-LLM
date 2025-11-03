@@ -11,3 +11,5 @@ results
 /Viz Testing
 *.json
 *.pkl
+
+.venv
