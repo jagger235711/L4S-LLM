@@ -217,8 +217,15 @@ def run(args):
     # For data/modules near the output side, we use args.device_out.
     # For data/modules lying in the middle, we use args.device_mid (it can be None). 
     # If args.device == args.device_out == args.device_mid (if not None), everything will be the same as using only one device.
+    # plm, *_ = load_plm(args.plm_type, os.path.join(cfg.plm_dir, args.plm_type, args.plm_size), 
+    #                    device_input_side=args.device, device_output_side=args.device_out, device_middle_side=args.device_mid)
     plm, *_ = load_plm(args.plm_type, os.path.join(cfg.plm_dir, args.plm_type, args.plm_size), 
-                       device_input_side=args.device, device_output_side=args.device_out, device_middle_side=args.device_mid)
+                       device_input_side=args.device, device_output_side=args.device_out, device_middle_side=args.device_mid,    
+                       # 以下参数用于显存优化
+                        device_map="auto",                # 自动拆分到 GPU/CPU
+                        offload_folder="./offload",       # CPU offload folder
+                        torch_dtype=torch.float16         # FP16 混合精度
+                        ,)
 
     if args.plm_type != 'llama':
         plm = plm.to(args.device)
