@@ -222,10 +222,15 @@ def run(args):
     plm, *_ = load_plm(args.plm_type, os.path.join(cfg.plm_dir, args.plm_type, args.plm_size), 
                        device_input_side=args.device, device_output_side=args.device_out, device_middle_side=args.device_mid,    
                        # 以下参数用于显存优化
-                        device_map="auto",                # 自动拆分到 GPU/CPU
-                        offload_folder="./offload",       # CPU offload folder
-                        torch_dtype=torch.float16         # FP16 混合精度
-                        ,)
+                           device_map="auto",                # 自动分配设备
+                            offload_folder="./offload",       # 内存不足时卸载到磁盘
+                            offload_state_dict=True,          # 卸载模型状态字典到磁盘
+                            torch_dtype=torch.float16,        # FP16精度
+                            low_cpu_mem_usage=True,           # 优化CPU内存占用
+                            load_in_4bit=True,                # 4bit量化（显存占用减少75%）
+                            bnb_4bit_use_double_quant=True,   # 双重4bit量化（进一步压缩）
+                            bnb_4bit_quant_type="nf4"         # 更高效的4bit量化类型
+                        )
 
     if args.plm_type != 'llama':
         plm = plm.to(args.device)
