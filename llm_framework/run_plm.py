@@ -22,6 +22,8 @@ from plm_special.models.low_rank import peft_model
 from plm_special.utils.utils import set_random_seed
 from plm_special.utils.plm_utils import load_plm
 from plm_special.utils.console_logger import ConsoleLogger
+from torch.distributed.fsdp.fully_sharded_data_parallel import FullyShardedDataParallel as FSDP
+from torch.distributed.fsdp.api import CPUOffload
 
 global exp_pool_path
 
@@ -188,6 +190,8 @@ def run(args):
     assert args.plm_size in cfg.plm_sizes
     assert args.exp_pool_path is not None, 'please specify a experience pool path for training'
 
+    if (torch.device=="cuda"):
+        torch.cuda.empty_cache()
     # 1. set seed
     set_random_seed(args.seed)
 
@@ -229,7 +233,8 @@ def run(args):
                             low_cpu_mem_usage=True,           # 优化CPU内存占用
                             load_in_4bit=True,                # 4bit量化（显存占用减少75%）
                             bnb_4bit_use_double_quant=True,   # 双重4bit量化（进一步压缩）
-                            bnb_4bit_quant_type="nf4"         # 更高效的4bit量化类型
+                            bnb_4bit_quant_type="nf4",        # 更高效的4bit量化类型
+                            cpu_offload=CPUOffload(offload_params=True) # 开启参数卸载到内存
                         )
 
     if args.plm_type != 'llama':
