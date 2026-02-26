@@ -15,3 +15,5 @@ results
 .venv
 llm_framework/exp_pool_data.csv
 llm_framework/output_log.txt
+
+!bookmarks.json

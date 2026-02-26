@@ -1,0 +1,124 @@
+{
+	"files": [
+		{
+			"path": "llm_framework/run_plm.py",
+			"bookmarks": [
+				{
+					"line": 116,
+					"column": 0,
+					"label": "train函数，可以看到计算奖励这个函数根本没使用"
+				},
+				{
+					"line": 126,
+					"column": 0,
+					"label": "交叉熵"
+				},
+				{
+					"line": 187,
+					"column": 0,
+					"label": "主函数"
+				},
+				{
+					"line": 225,
+					"column": 0,
+					"label": "载入预训练模型"
+				},
+				{
+					"line": 247,
+					"column": 0,
+					"label": "这是编码器的一部分，将数据维度对齐"
+				},
+				{
+					"line": 253,
+					"column": 0,
+					"label": "模型定义"
+				},
+				{
+					"line": 270,
+					"column": 0,
+					"label": "计算奖励"
+				}
+			]
+		},
+		{
+			"path": "llm_framework/plm_special/models/rl_policy.py",
+			"bookmarks": [
+				{
+					"line": 43,
+					"column": 0,
+					"label": "构造时间步嵌入层"
+				},
+				{
+					"line": 58,
+					"column": 0,
+					"label": "分类头"
+				},
+				{
+					"line": 150,
+					"column": 0,
+					"label": "reset_dq函数"
+				},
+				{
+					"line": 175,
+					"column": 0,
+					"label": "把时间步编码进去，相当于传统的位置编码"
+				}
+			]
+		},
+		{
+			"path": "llm_framework/plm_special/test_seq.py",
+			"bookmarks": [
+				{
+					"line": 222,
+					"column": 0,
+					"label": "测试环境模拟"
+				},
+				{
+					"line": 267,
+					"column": 0,
+					"label": "调用模型做推理"
+				},
+				{
+					"line": 377,
+					"column": 0,
+					"label": "log"
+				}
+			]
+		},
+		{
+			"path": "llm_framework/plm_special/models/state_encoder.py",
+			"bookmarks": [
+				{
+					"line": 6,
+					"column": 0,
+					"label": "状态编码器"
+				}
+			]
+		},
+		{
+			"path": "Results Viz/evaltest.py",
+			"bookmarks": [
+				{
+					"line": 80,
+					"column": 0,
+					"label": "计算吞吐量"
+				},
+				{
+					"line": 167,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "llm_framework/plm_special/utils/utils.py",
+			"bookmarks": [
+				{
+					"line": 19,
+					"column": 0,
+					"label": ""
+				}
+			]
+		}
+	]
+}
